@@ -1,0 +1,90 @@
+﻿@page
+@using PuzzleGame.Model
+@model PuzzleGame.Pages.OpenCellModel
+
+@{
+    ViewData["Title"] = "OpenCell";
+}
+
+<h1>Загадка №@Model.Cell.Id</h1>
+
+<div class="row">
+    <div class="col-md">
+        <form method="post">
+            <h4>@Html.DisplayFor(modelItem => modelItem.Cell.Question)</h4>
+            <hr />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            @if (Model.Cell.State == CellState.Closed)
+            {
+                <div class="form-group">
+                    <label asp-for="Answer" class="control-label">Введите свой ответ:</label>
+                    <input asp-for="Answer" class="form-control" />
+                    <span asp-validation-for="Answer" class="text-danger"></span>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <label asp-for="Answer" class="control-label">Правильный ответ засчитан:</label><br />
+                    <span class="answer">@Html.DisplayFor(modelItem => Model.Cell.Answer)</span>
+                </div>
+
+                @if (Model.Cell.Type == CellType.Target)
+                {
+                    <br />
+                    <h4>Задание</h4>
+                    <hr />
+
+                    if (Model.Cell.State == CellState.Quiz)
+                    {
+                        <div class="map">
+                            <img src='@($"./maps/{Model.Cell.Map}")' />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Code" class="control-label">Введите код:</label>
+                            <input asp-for="Code" class="form-control" />
+                            <span asp-validation-for="Code" class="text-danger"></span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group">
+                            <span class="answer">Поздравляем! Задание пройдено!</span>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <br />
+                    <hr />
+                    <div class="form-group">
+                        <span class="answer">Тут пусто! Попробуйте поискать в другом месте!</span>
+                    </div>
+                }
+            }
+
+            <br />
+            <div class="form-group justified">
+                @if (Model.Cell.State != CellState.Opened)
+                {
+                    <div class="justified__element">
+                        <input type="submit" value="Отправить" class="btn btn-primary" />
+                    </div>
+                }
+                <div class="justified__element">
+                    <a asp-page="./Index">Вернуться к вопросам</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

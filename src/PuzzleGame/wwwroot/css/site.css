@@ -1,0 +1,137 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.field {
+}
+
+.field__row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.field__cell {
+    flex-grow: 1;
+    position: relative;
+}
+
+.field__cell__content {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    border: solid 1px #acacac;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+    .field__cell__content.opened-empty {
+        border-color: #ececec;
+        opacity: 0.5;
+        color: #8c8c8c;
+    }
+
+    .field__cell__content.quiz-target {
+        border-color: #9f0433;
+        background-color: #9f043320;
+        color: #9f0433;
+    }
+
+    .field__cell__content.opened-target {
+        border-color: #007e58;
+        background-color: #007e5820;
+        color: #007e58;
+    }
+
+.cell-text {
+    font-size: 16px;
+    line-height: normal;
+}
+
+.cell-bottom, .cell-top {
+    font-size: 8px;
+}
+
+@media (min-width: 768px) {
+    .cell-text {
+        font-size: 24px;
+    }
+
+    .cell-bottom, .cell-top {
+        font-size: 18px;
+    }
+}
+
+.justified {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.answer {
+    font-style:italic;
+}
+
+.map {
+    
+}
+
+.map img {
+    height: auto;
+    width: 100%;
+}
+
+.summary ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 2rem;
+}
+
+.summary ul li {
+    display: flex;
+    justify-content: space-between;
+}
+
+.congrat {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    background-color: #FFFFFFc9;
+    z-index: 100;
+}
+
+.congrat .message,
+.congrat .new-year {
+    text-align: center;
+    font-size: 28px;
+}
+
+.congrat .message {
+}
+
+.congrat .new-year {
+    font-size: 32px;
+}

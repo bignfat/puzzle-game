@@ -1,0 +1,82 @@
+﻿@page
+@using PuzzleGame.Model
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+
+    string GetCellLabel(Cell cell)
+    {
+        if (cell.State == CellState.Opened)
+        {
+            if (cell.Type == CellType.Empty)
+                return $"Пусто";
+
+            if (cell.Type == CellType.Target)
+                return $"Пройдено";
+        }
+
+        if (cell.State == CellState.Quiz)
+        {
+            if (cell.Type == CellType.Target)
+                return $"Задание";
+        }
+
+        return "&nbsp;";
+    }
+}
+
+@if (Model.TasksLeft == 0)
+{
+    <div class="congrat">
+        <div class="message">Игра пройдена!</div>
+        <div class="new-year">С новым Годом!</div>
+        <div></div>
+    </div>
+}
+
+<div class="text-center">
+    <h1 class="display-4">Поиграем!</h1>
+    <br/>
+    <div class="field">
+       @for (var row = 0; row < 6; row++ )
+       {
+           <div class="field__row">
+            @for (var column = 0; column < 6; column++) {
+                var cell = @Model.Cells[row, column];
+                <div class="field__cell">
+                    <a asp-page="./OpenCell" asp-route-id="@cell.Id">
+                        <div class='field__cell__content @($"{cell.State}-{cell.Type}".ToLower())'>
+                            <div class="cell-top">&nbsp;</div>
+                            <div class="cell-text">@cell.Id</div>
+                            <div class="cell-bottom">@Html.Raw(GetCellLabel(cell))</div>
+                        </div>
+                    </a>
+                </div>
+            }
+           </div>
+       }
+    </div>
+    <div class="summary">
+        <ul>
+            <li><span class="label">Пройдено заданий:</span><span class="value">@Model.TasksPassed</span></li>
+            <li><span class="label">Осталось заданий:</span><span class="value">@Model.TasksLeft</span></li>
+        </ul>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(resize);
+        $(window).resize(resize);
+
+        function resize() {
+            var wdth = $('.field__cell').width();
+            $('.field__cell').css({'height':wdth+'px'});
+        }
+
+        $(function() {
+            setTimeout(function() { $('.congrat').fadeOut(2000); }, 1000);
+        });
+    </script>
+}
+

@@ -1,0 +1,61 @@
+﻿@page
+@model PuzzleGame.Pages.Manager.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Cell</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cell.Row)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cell.Row)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cell.Column)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cell.Column)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cell.State)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cell.State)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cell.Type)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cell.Type)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cell.Question)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cell.Question)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cell.Answer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cell.Answer)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cell.PossibleAnswer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cell.PossibleAnswer)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Cell.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

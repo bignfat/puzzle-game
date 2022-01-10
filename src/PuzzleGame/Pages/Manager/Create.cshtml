@@ -1,0 +1,81 @@
+﻿@page
+@model PuzzleGame.Pages.Manager.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Cell</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Cell.Row" class="control-label"></label>
+                <input asp-for="Cell.Row" class="form-control" />
+                <span asp-validation-for="Cell.Row" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cell.Column" class="control-label"></label>
+                <input asp-for="Cell.Column" class="form-control" />
+                <span asp-validation-for="Cell.Column" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cell.State" class="control-label"></label>
+                <select asp-for="Cell.State" class="form-control">
+                    <option value="0">Закрытая</option>
+                    <option value="1">Задание доступно</option>
+                    <option value="2">Открытая</option>
+                </select>
+                <span asp-validation-for="Cell.State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cell.Type" class="control-label"></label>
+                <select asp-for="Cell.Type" class="form-control">
+                    <option value="0">Пустая</option>
+                    <option value="1">С заданием</option>
+                </select>
+                <span asp-validation-for="Cell.Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cell.Question" class="control-label"></label>
+                <input asp-for="Cell.Question" class="form-control" />
+                <span asp-validation-for="Cell.Question" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cell.Answer" class="control-label"></label>
+                <input asp-for="Cell.Answer" class="form-control" />
+                <span asp-validation-for="Cell.Answer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cell.PossibleAnswer" class="control-label"></label>
+                <input asp-for="Cell.PossibleAnswer" class="form-control" />
+                <span asp-validation-for="Cell.PossibleAnswer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cell.Map" class="control-label"></label>
+                <input asp-for="Cell.Map" class="form-control" />
+                <span asp-validation-for="Cell.Map" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cell.Code" class="control-label"></label>
+                <input asp-for="Cell.Code" class="form-control" />
+                <span asp-validation-for="Cell.Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
